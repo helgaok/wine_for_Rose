@@ -103,50 +103,44 @@
     </div>
     
     
-    <div><a id="products"></a></div>
+  <div><a id="products"></a></div>
     <div class="site-section">
       <div class="container">
         <div class="row">
           <div class="col-12 section-title text-center mb-5">
             <h2 class="d-block">Коллекция вин</h2>
-            <p>Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о появлении божественного эликсира — вина.
+            <p>Вино — один из самых благородных и многогранных напитков в мире! Виноделие берёт своё начало с незапамятных              времён. Вино упоминается в Библии и Коране, греческой и римской мифологии, где были свои боги вина (к                     примеру, Дионис). Стоит отметить, что почти у каждого народа существует своя легенда, повествующая о                      появлении божественного эликсира — вина.
             </p>
           </div>
         </div>
-        {% for group in wines_dict %}
+        {% for group, product_wine in grouped_wines.items() %}
         <div class="col-12 section-title text-center mb-5">
           <h2 class="d-block">{{group}}</h2>
         </div>
         <div class="row">
-          
-          
-          {% for wine in wines_dict[group] %}
+                
+          {% for product in product_wine %}
           <div class="col-lg-4 mb-5 col-md-6">
             <div class="wine_v_1 text-center pb-4 pt-5">
-              {% if wine['Акция'] %}
-              <img src="images\{{wine['Картинка']}}" alt="Image" class="img-fluid"><img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-              {% else %}
-              <img src="images\{{wine['Картинка']}}" alt="Image" class="img-fluid">
+              <img src="images\{{product['Картинка']}}" alt="Image" class="img-fluid">
+              {% if product['Акция'] %}
+              <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
               {% endif %}
               <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{wine['Название']}}</h3>
-                {% if wine['Сорт'] %}
+                <h3 class="heading mt-3 mb-3 text-dark">{{product['Название']}}</h3>
+                {% if product['Сорт'] %}
                 <p>
-                  Сорт винограда - {{wine['Сорт']}}<br/>
-                  <span class="price">{{wine['Цена']}} р.</span>
+                  Сорт винограда - {{product['Сорт']}}<br/>
                 </p>
-                {% else %}
+                 {% endif %}
                 <p>
-                  <span class="price">{{wine['Цена']}} р.</span>
-                </p>
-                {% endif %}
+                  <span class="price">{{product['Цена']}} р.</span>
+                </p> 
               </div>
             </div>
           </div>
           {% endfor %}
-        {% endfor %}
-         
-          
+        {% endfor %}  
         </div>
       </div>
     </div>
